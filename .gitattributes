@@ -1,0 +1,3 @@
+# X68000 のファイルは改行コードも文字コード（Shift_JIS）もそのまま保存する
+x68k/** binary
+*.ico binary
