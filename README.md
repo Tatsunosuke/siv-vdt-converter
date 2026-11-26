@@ -3,6 +3,8 @@
 1989〜1993 年ごろに X68000 用に作った動画取り込み・再生ソフト **SiV（Silicon VTR）** と、
 いまの動画を SiV の動画ファイル（.VDT）に変換する Windows 用ツールをまとめたリポジトリです。
 
+![VdtConverter の画面](docs/screenshot.png)
+
 | フォルダ | 中身 |
 |---|---|
 | `VdtConverter/` | 動画 → VDT 変換ツール（C# / .NET 8 の Windows フォームアプリ）。使い方は [VdtConverter/README.md](VdtConverter/README.md)、VDT の形式は [VDT_FORMAT_NOTES.md](VdtConverter/VDT_FORMAT_NOTES.md) |
@@ -31,8 +33,8 @@ git push origin v0.1.0
 | `SIV097C.X` | 未公開版 0.97c |
 | `SIVP.X` | 再生専用プレイヤー（0.60b）。マルチ再生・拡大縮小など |
 | `SIVP@.X` | 未公開版 0.60?。拡大縮小回転半透明表示（-D8）付き |
-| `SIVPH.X` | SIVP.X に HDD 読み出し再生を足した改造版（0.60H） |
-| `SIVP@H.X` | SIVP@.X に HDD 読み出し再生を足した改造版（0.6@H）。拡大縮小（-D7）の幅 251 / 252 で画面が乱れるバグも修正 |
+| `SIVPH.X` | `SIVP.X` に HDD 読み出し再生を足した改造版（0.60H） |
+| `SIVP@H.X` | `SIVP@.X` に HDD 読み出し再生を足した改造版（0.6@H）。拡大縮小（-D7）の幅 251 / 252 で画面が乱れるバグも修正 |
 | `VDT2CGA.X` | VDT → CGA 変換ツール |
 | `*.DOC` / `*.TXT` | 説明書・VDT と CGA の仕様書 |
 | `SIV.ICN` / `SIV.BCK` | SiV のアイコンと壁紙 |

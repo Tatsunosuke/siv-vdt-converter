@@ -2,6 +2,8 @@
 Windowsで扱える動画ファイルを、X68000用動画ソフト SiV（Silicon VTR）0.97 のデータファイル.VDTに変換するWindowsフォームアプリ（C# / .NET 8）。
 変換結果をその場で確認できる簡易プレーヤー付き。
 
+![VdtConverter の画面](../docs/screenshot.png)
+
 ## 必要なもの
 - Windows 10 / 11
 - .NET 8 SDK（ビルド用）、または Visual Studio 2022
