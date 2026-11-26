@@ -8,6 +8,20 @@
 | `VdtConverter/` | 動画 → VDT 変換ツール（C# / .NET 8 の Windows フォームアプリ）。使い方は [VdtConverter/README.md](VdtConverter/README.md)、VDT の形式は [VDT_FORMAT_NOTES.md](VdtConverter/VDT_FORMAT_NOTES.md) |
 | `x68k/` | X68000 側の実行ファイルと説明書（SiVPack） |
 
+## ダウンロード
+
+ビルド済みの zip は [Releases](../../releases) にあります。中身は次のとおりです。
+
+- `VdtConverter/VdtConverter.exe`（動かすには [.NET 8 デスクトップ ランタイム](https://dotnet.microsoft.com/download/dotnet/8.0) と `ffmpeg.exe` が要ります）
+- `x68k/`（このリポジトリの x68k フォルダと同じもの）
+
+新しい版を出すときは、タグを付けて push するだけで GitHub Actions が zip を作って Releases に載せます。
+
+```
+git tag v0.1.0
+git push origin v0.1.0
+```
+
 ## x68k/ の中身
 
 | ファイル | 説明 |

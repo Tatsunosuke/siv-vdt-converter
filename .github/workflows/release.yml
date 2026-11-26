@@ -1,0 +1,51 @@
+# タグ（v0.1.0 など）を push すると、Windows 上で VdtConverter.exe を作って
+# x68k のファイルと一緒に zip にまとめ、GitHub の Releases に載せる。
+# Actions タブの「Run workflow」から手で動かしたときは、zip を Artifacts に置くだけ。
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build and pack
+        shell: pwsh
+        run: |
+          $ver = "${{ github.ref_name }}".TrimStart('v')
+          if ($ver -notmatch '^\d+(\.\d+)*$') { $ver = '0.0.0' }
+          dotnet publish VdtConverter/VdtConverter.csproj -c Release -r win-x64 --self-contained false `
+            -p:PublishSingleFile=true -p:Version=$ver -o out/VdtConverter
+          Remove-Item out/VdtConverter/*.pdb -ErrorAction SilentlyContinue
+          Copy-Item VdtConverter/README.md, VdtConverter/VDT_FORMAT_NOTES.md out/VdtConverter/
+          New-Item -ItemType Directory out/x68k | Out-Null
+          Copy-Item x68k/* out/x68k/
+          Copy-Item README.md out/
+          Compress-Archive -Path out/* -DestinationPath "SiV-VdtConverter-$ver.zip"
+          "ZIP=SiV-VdtConverter-$ver.zip" >> $env:GITHUB_ENV
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP }}
+          generate_release_notes: true
+
+      - name: Keep the zip (manual run)
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: SiV-VdtConverter
+          path: ${{ env.ZIP }}
